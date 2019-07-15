@@ -1,0 +1,778 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trips</title>
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Raleway|Amatic+SC|Montserrat|Cardo|Poiret+One"
+        rel="stylesheet">
+    <link rel="icon" href="logo11.1.PNG" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <style>
+        .main_h {
+            position: fixed;
+            top: 0px;
+            max-height: 70px;
+            z-index: 999;
+            width: 100%;
+            padding-top: 17px;
+            background: none;
+            overflow: hidden;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            opacity: 0;
+            top: -100px;
+            padding-bottom: 6px;
+            font-family: Raleway;
+        }
+
+        @media only screen and (max-width: 766px) {
+            .main_h {
+                padding-top: 25px;
+            }
+        }
+
+        .open-nav {
+            max-height: 400px !important;
+        }
+
+        .open-nav .mobile-toggle {
+            transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+        }
+
+        .sticky {
+            background-color: rgba(255, 255, 255, 0.93);
+            opacity: 1;
+            top: 0px;
+            border-bottom: 1px solid gainsboro;
+        }
+
+        .logo {
+            width: 50px;
+            font-size: 25px;
+            color: #8f8f8f;
+            text-transform: uppercase;
+            float: left;
+            display: block;
+            margin-top: 0;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        @media only screen and (max-width: 766px) {
+            .logo {
+                float: none;
+            }
+        }
+
+        nav {
+            float: right;
+            width: 60%;
+        }
+
+        @media only screen and (max-width: 766px) {
+            nav {
+                width: 100%;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            overflow: hidden;
+            text-align: right;
+            float: right;
+        }
+
+        @media only screen and (max-width: 766px) {
+            nav ul {
+                padding-top: 10px;
+                margin-bottom: 22px;
+                float: left;
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-left: 35px;
+            line-height: 1.5;
+        }
+
+        @media only screen and (max-width: 766px) {
+            nav ul li {
+                width: 100%;
+                padding: 7px 0;
+                margin: 0;
+            }
+        }
+
+        nav ul a {
+            color: #888888;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 20px;
+            position: absolute;
+            right: 22px;
+            top: 0;
+            width: 30px;
+            -webkit-transition: all 200ms ease-in;
+            -moz-transition: all 200ms ease-in;
+            transition: all 200ms ease-in;
+        }
+
+        @media only screen and (max-width: 766px) {
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        .mobile-toggle span {
+            width: 30px;
+            height: 4px;
+            margin-bottom: 6px;
+            border-radius: 1000px;
+            background: #8f8f8f;
+            display: block;
+        }
+
+        .row {
+            width: 100%;
+            max-width: 940px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 2%;
+        }
+
+        table,
+        tr,
+        td {
+            width: inherit;
+            font-family: Raleway;
+            text-align: center;
+            margin: auto;
+            line-height: 30px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            color: #8f8f8f;
+            background: white;
+            font-family: "Cardo", serif;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 30px;
+            line-height: 1.8;
+            text-transform: uppercase;
+            font-family: 'Poiret One', cursive;
+            letter-spacing: 2px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        .content {
+            padding: 50px 2% 100px;
+        }
+
+        .dropbtn {
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .hero {
+            position: relative;
+            background: url(http://www.philippefercha.com/cd/toggle-menu-bg.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            text-align: center;
+            color: #fff;
+            padding-top: 110px;
+            min-height: 500px;
+            letter-spacing: 4px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            line-height: 1.3;
+            font-family: 'Poiret One', cursive;
+            font-weight: 300;
+        }
+
+        .hero h1 span {
+            font-size: 25px;
+            color: #e8f380;
+            border-bottom: 2px solid #e8f380;
+            padding-bottom: 12px;
+            line-height: 3;
+        }
+
+        .mouse {
+            display: block;
+            margin: 0 auto;
+            width: 26px;
+            height: 46px;
+            border-radius: 13px;
+            border: 2px solid #e8f380;
+            position: absolute;
+            bottom: 40px;
+            position: absolute;
+            left: 50%;
+            margin-left: -26px;
+        }
+
+        .mouse span {
+            display: block;
+            margin: 6px auto;
+            width: 2px;
+            height: 2px;
+            border-radius: 4px;
+            background: #e8f380;
+            border: 1px solid transparent;
+            -webkit-animation-duration: 1.5s;
+            animation-duration: 1.5s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-name: scroll;
+            animation-name: scroll;
+        }
+
+        @-webkit-keyframes scroll {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                -webkit-transform: translateY(20px);
+                transform: translateY(20px);
+            }
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                -webkit-transform: translateY(20px);
+                -ms-transform: translateY(20px);
+                transform: translateY(20px);
+            }
+        }
+
+        html,
+        body {
+            margin: 0px;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            font-family: Raleway;
+            margin: 0 auto;
+            padding: 5em 3em;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #AAA;
+            font-size: 40px;
+            font-weight: lighter;
+            margin-bottom: 5px;
+        }
+
+        /*        buttons in animation top nav turn black on hover*/
+
+        div a:hover {
+            color: black;
+            font-weight: 600;
+        }
+
+        header span {
+            color: #222;
+        }
+
+        footer span {
+            color: #AAA;
+        }
+
+        #icon {
+            text-align: center;
+            background-color: transparent;
+        }
+
+        div.container {
+            font-family: Raleway;
+            margin: 0 auto;
+            padding-bottom: 15px;
+            padding-top: 0px;
+            text-align: center;
+        }
+
+        div.container a {
+            font: 1.5vw Raleway;
+            margin: 0px 10px;
+            padding: 10px 10px;
+            position: relative;
+            z-index: 0;
+            cursor: pointer;
+        }
+
+        div.container a.active {
+            color: black;
+        }
+
+        /* Pull up and down  */
+
+        div.pullUpDown a:before,
+        div.pullUpDown a:after {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            left: 0px;
+            content: '';
+            background: grey;
+            opacity: 0.3;
+            transition: all 0.3s;
+        }
+
+        div.pullUpDown a:before {
+            top: 0px;
+        }
+
+        div.pullUpDown a:after {
+            bottom: 0px;
+        }
+
+        div.pullUpDown a:hover:before,
+        div.pullUpDown a:hover:after {
+            height: 100%;
+        }
+
+        /* Highlight text out  */
+
+        div.highlightTextOut a {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        div.highlightTextOut a:before,
+        div.highlightTextIn a:before {
+            position: absolute;
+            color: black;
+            top: 0px;
+            left: 0px;
+            padding: 10px;
+            overflow: hidden;
+            content: attr(alt);
+            transition: all 0.8s;
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        div.highlightTextOut a:hover:before,
+        div.highlightTextIn a:hover:before {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Highlight text in  */
+
+        div.highlightTextIn a {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        div.highlightTextIn a:before {
+            transform: scale(1.2);
+        }
+
+        .outer {
+            width: 1px;
+            height: 100%;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inner {
+            position: absolute;
+            width: 100%;
+            height: 40%;
+            background: grey;
+            top: 30%;
+            box-shadow: 0px 0px 30px 20px grey;
+        }
+
+        .footer {
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: lightgrey;
+            color: dimgrey;
+            height: 265px;
+            font-family: "Cardo", serif;
+            text-align: center;
+        }
+
+        .BackToTop {
+            font-family: Agency FB;
+            color: black;
+            font-size: 22px;
+            margin: 2px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #379EC7;
+            vertical-align: middle;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            color: dimgrey;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        #rig {
+            max-width: 100%;
+            margin: 0.8 auto;
+            /*center aligned*/
+            padding: 0.8em;
+            font-size: 12px;
+            list-style: none;
+        }
+
+        #rig li {
+            display: inline-block;
+            *display: grid;
+            /*for IE6 - IE7*/
+            width: 33.1%;
+            vertical-align: middle;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* The wrapper for each item */
+
+        .rig-cell {
+            margin: 0.8em;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 1.8);
+            display: block;
+            position: relative;
+            overflow: hidden;
+            width: 35em;
+            float: left
+        }
+
+        /* If have the image layer */
+
+        .rig-img {
+            display: block;
+            width: 100%;
+            border: none;
+            transform: scale(1);
+            transition: all 1s;
+        }
+
+        #rig li:hover .rig-img {
+            transform: scale(1.05);
+        }
+
+        /* If have the overlay layer */
+
+        .rig-overlay {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            background: #3DC0F1 url(img/link.png) no-repeat center 20%;
+            background-size: 50px 50px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            /*For IE6 - IE8*/
+            transition: all 0.6s;
+        }
+
+        #rig li:hover .rig-overlay {
+            opacity: 0.4;
+        }
+
+        /* If have captions */
+
+        .rig-text {
+            display: block;
+            padding: 0 30px;
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            text-transform: capitalize;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Poiret One', cursive;
+            font-weight: normal !important;
+            top: 45%;
+            color: white;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            /*For older IE*/
+            transform: translateY(-20px);
+            transition: all .6s;
+        }
+
+        #rig li:hover .rig-text {
+            transform: translateY(0px);
+            opacity: 0.9;
+        }
+
+        @media (max-width: 9000px) {
+            #rig li {
+                display: flex;
+                float: left;
+                width: 33.1%;
+                background-color: lightgray;
+                margin-bottom: 50px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            #rig li {
+                display: flex;
+                float: left;
+                width: 50%;
+                background-color: lightgray;
+            }
+        }
+
+        @media (max-width: 460px) {
+            #rig li {
+                display: block;
+                width: 100%;
+                background-color: lightgray;
+            }
+
+            .rig-img {
+                width: 100%
+            }
+
+            .rig-cell {
+                width: auto
+            }
+        }
+
+        .content:hover .overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="icon">
+        <a href="index.html"><img src="logo11.1.png" width="60"></a>
+    </div>
+
+    <div class="container highlightTextIn">
+        <a href="index.html" alt="HOME">HOME</a>
+        <div class="dropdown">
+            <a class="dropbtn" href="portfolio_page_2.html" alt="PORTFOLIO">PORTFOLIO</a>
+            <div class="dropdown-content">
+                <a style="font-size: 16px;" href="portraits_2.html">Portraits</a>
+                <a style="font-size: 16px;" href="city_2.html">City & street photography</a>
+                <a style="font-size: 16px;" href="abstract_2.html">Abstract & Texture</a>
+                <a style="font-size: 16px;" href="nature_2.html">Nature & Wildlife</a>
+                <a style="font-size: 16px;" href="macro_2.html">Macro</a>
+                <a style="font-size: 16px;" href="fashion_2.html">Fashion</a>
+                <a style="font-size: 16px;" href="architecture_2.html">Architecture & Real estate</a>
+                <a style="font-size: 16px;" href="astrophotography_2.html">Astrophotography</a>
+                <a style="font-size: 16px;" href="food_2.html">Food</a>
+                <a style="font-size: 16px;" href="monochrome_2.html">Monochrome</a>
+                <a style="font-size: 16px;" href="minimalist_2.html">Minimalist Photography</a>
+            </div>
+        </div>
+        <a class="active" href="projects_page_2.html" alt="TRIPS">TRIPS</a>
+        <a href="about_page_2.html" alt="ABOUT">ABOUT</a>
+        <a href="contact_page_2.html" alt="CONTACT">CONTACT</a>
+    </div>
+
+    <header class="main_h">
+        <div class="row">
+            <a class="logo" href="#"><img src="logo11.1.PNG" width="42px"></a>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio_page_2.html">Portfolio</a></li>
+                    <li><a style="color: black" href="projects_page_2.html">Trips</a></li>
+                    <li><a href="about_page_2.html">About</a></li>
+                    <li><a href="contact_page_2.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Portfolio Gallery Grid -->
+
+    <ul id="rig">
+        <li>
+            <a class="rig-cell"
+                href="https://photos.google.com/share/AF1QipMeyU4dtyN2de82HWhaw87JSc1IAcSheoQDclzQB0YcxxMHHPHIjA9Lfq998QvF2g?key=S0tja1VrdmJDd1BnaUZOaUNrZUhsQ3NaZDM3NXZ3">
+                <img class="rig-img" src="IMG_4385.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">Golan Trail, Israel</span>
+            </a>
+        </li>
+        <li>
+            <a class="rig-cell" href="#">
+                <img class="rig-img" src="P1200712-2.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">France</span>
+            </a>
+        </li>
+        <li>
+            <a class="rig-cell"
+                href="https://photos.google.com/share/AF1QipPtApIcgl_T4UGGl3gYUUCMRetRovvn5iH1Lu5uq6M0x1ROHzJBqyyq53edjNb23Q?key=X05rVEVVUklwX1Q1V0ZXVFpyQ2FjTmJTbGJIUXZB">
+                <img class="rig-img" src="IMG_6691.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">Netherlands</span>
+            </a>
+        </li>
+        <li>
+            <a class="rig-cell"
+                href="https://photos.google.com/share/AF1QipMXeY-bw4rBTqgphU5iZX6j9EpYca5LE3YEy69Y5dlm2r1wwP3aleawElGqRrO1EQ?key=VXNOQjkycVd5MDJhdGU4RjhXS1pyRjdUaTMxOVBn">
+                <img class="rig-img" src="IMG_0892.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">Georgia</span>
+            </a>
+        </li>
+        <li>
+            <a class="rig-cell" href="#">
+                <img class="rig-img" src="cristian-grecu-xQYW7brEauY-unsplash.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">Trip #5</span>
+            </a>
+        </li>
+        <li>
+            <a class="rig-cell" href="#">
+                <img class="rig-img" src="adventure-1850912_1920.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">Trip #6</span>
+            </a>
+        </li>
+        <li>
+            <a class="rig-cell" href="#">
+                <img class="rig-img" src="christopher-burns-zd1KiRj7ihE-unsplash.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">Trip #7</span>
+            </a>
+        </li>
+        <li>
+            <a class="rig-cell" href="#">
+                <img class="rig-img" src="mountain-984083_1920.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">Trip #8</span>
+            </a>
+        </li>
+        <li>
+            <a class="rig-cell" href="#">
+                <img class="rig-img" src="samrat-khadka-wrfl3DeoTIw-unsplash.jpg">
+                <span class="rig-overlay"></span>
+                <span class="rig-text">Trip #9</span>
+            </a>
+        </li>
+    </ul>
+    <div style="text-align: center;"><a class="BackToTop" style="text-decoration: none; font-weight: 100;"
+            href="#top">Back to top</a>
+        <br>
+        <a href="#"><img style="padding: 5px; vertical-align: -5px;" src="logo11.1.png" width="40"></a>
+    </div>
+    <br>
+
+    <footer class="footer">
+        <br>
+        <br>
+        <h2 style="font-family: 'Amatic SC', cursive; font-size: 2.5em; margin-top: 25px;">Find Me On:</h2>
+        <a href="https://www.shutterstock.com/g/eliran.bus?language=en" target="_blank"><img src="Shutterstock-logo.png"
+                height="35" width="35"></a>
+        <a href="https://www.facebook.com/eliran.buskila.524" target="_blank"><img src="facebook-logo.png"
+                alt="Facebook logo" height="35" width="35"></a>
+        <a href="https://www.flickr.com/photos/147173434@N07/" target="_blank"><img src="flickr-logo.png"
+                alt="Flickr logo" height="35" width="35"></a>
+        <a href="https://photos.app.goo.gl/Lr8Su3RtM1x6xSAt5" target="_blank"><img src="google_photos.jpg"
+                alt="Google photos logo" height="35" width="35"></a>
+        <p style="position: center; font-size: 10px" ;>Designed & developed by
+            <br><span class="signature">Eliran Buskila - Web Developer &copy;</span></p>
+    </footer>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

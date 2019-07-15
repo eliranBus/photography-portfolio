@@ -1,0 +1,707 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Amatic+SC|Raleway|Montserrat|Cardo|Poiret+One"
+        rel="stylesheet">
+    <link rel="icon" href="logo11.1.PNG" type="image/gif" sizes="16x16">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+
+    <style>
+        .main_h {
+            position: fixed;
+            top: 0px;
+            max-height: 70px;
+            z-index: 999;
+            width: 100%;
+            padding-top: 17px;
+            background: none;
+            overflow: hidden;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            opacity: 0;
+            top: -100px;
+            padding-bottom: 6px;
+            font-family: Raleway;
+        }
+
+        @media only screen and (max-width: 766px) {
+            .main_h {
+                padding-top: 25px;
+            }
+        }
+
+        .open-nav {
+            max-height: 400px !important;
+        }
+
+        .open-nav .mobile-toggle {
+            transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+        }
+
+        .sticky {
+            background-color: rgba(255, 255, 255, 0.93);
+            opacity: 1;
+            top: 0px;
+            border-bottom: 1px solid gainsboro;
+        }
+
+        .logo {
+            width: 50px;
+            font-size: 25px;
+            color: #8f8f8f;
+            text-transform: uppercase;
+            float: left;
+            display: block;
+            margin-top: 0;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        @media only screen and (max-width: 766px) {
+            .logo {
+                float: none;
+            }
+        }
+
+        nav {
+            float: right;
+            width: 60%;
+        }
+
+        @media only screen and (max-width: 766px) {
+            nav {
+                width: 100%;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            overflow: hidden;
+            text-align: right;
+            float: right;
+        }
+
+        @media only screen and (max-width: 766px) {
+            nav ul {
+                padding-top: 10px;
+                margin-bottom: 22px;
+                float: left;
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-left: 35px;
+            line-height: 1.5;
+        }
+
+        @media only screen and (max-width: 766px) {
+            nav ul li {
+                width: 100%;
+                padding: 7px 0;
+                margin: 0;
+            }
+        }
+
+        nav ul a {
+            color: #888888;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 20px;
+            position: absolute;
+            right: 22px;
+            top: 0;
+            width: 30px;
+            -webkit-transition: all 200ms ease-in;
+            -moz-transition: all 200ms ease-in;
+            transition: all 200ms ease-in;
+        }
+
+        @media only screen and (max-width: 766px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        .mobile-toggle span {
+            width: 30px;
+            height: 4px;
+            margin-bottom: 6px;
+            border-radius: 1000px;
+            background: #8f8f8f;
+            display: block;
+        }
+
+        .row {
+            width: 100%;
+            max-width: 940px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 2%;
+        }
+
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 30px;
+            line-height: 1.8;
+            text-transform: uppercase;
+            font-family: 'Poiret One', cursive;
+            letter-spacing: 2px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        .content {
+            padding: 50px 2% 100px;
+        }
+
+        .dropbtn {
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        @-webkit-keyframes scroll {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                -webkit-transform: translateY(20px);
+                transform: translateY(20px);
+            }
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                -webkit-transform: translateY(20px);
+                -ms-transform: translateY(20px);
+                transform: translateY(20px);
+            }
+        }
+
+        html,
+        body {
+            margin: 0px;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            font-family: Raleway;
+            margin: 0 auto;
+            padding: 5em 3em;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #AAA;
+            font-size: 40px;
+            font-weight: lighter;
+            margin-bottom: 5px;
+        }
+
+        /*        buttons in animation top nav turn black on hover*/
+
+        div a:hover {
+            color: black;
+            font-weight: 600;
+        }
+
+        header span {
+            color: #222;
+        }
+
+        #icon {
+            text-align: center;
+            background-color: transparent;
+        }
+
+        div.container {
+            font-family: Raleway;
+            margin: 0 auto;
+            padding-bottom: 15px;
+            padding-top: 0px;
+            text-align: center;
+        }
+
+        div.container a {
+            font: 1.5vw Raleway;
+            margin: 0px 10px;
+            padding: 10px 10px;
+            position: relative;
+            z-index: 0;
+            cursor: pointer;
+        }
+
+        div.container a.active {
+            color: black;
+        }
+
+        /* Highlight text out  */
+
+        div.highlightTextOut a {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        div.highlightTextOut a:before,
+        div.highlightTextIn a:before {
+            position: absolute;
+            color: black;
+            top: 0px;
+            left: 0px;
+            padding: 10px;
+            overflow: hidden;
+            content: attr(alt);
+            transition: all 0.8s;
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        div.highlightTextOut a:hover:before,
+        div.highlightTextIn a:hover:before {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Highlight text in  */
+
+        div.highlightTextIn a {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        div.highlightTextIn a:before {
+            transform: scale(1.2);
+        }
+
+        .outer {
+            width: 1px;
+            height: 100%;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inner {
+            position: absolute;
+            width: 100%;
+            height: 40%;
+            background: grey;
+            top: 30%;
+            box-shadow: 0px 0px 30px 20px grey;
+        }
+
+        .footer {
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: lightgrey;
+            color: dimgrey;
+            height: 265px;
+            font-family: "Cardo", serif;
+            text-align: center;
+        }
+
+        .BackToTop {
+            font-family: Agency FB;
+            color: black;
+            font-size: 22px;
+            margin: 2px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #379EC7;
+            vertical-align: middle;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            color: dimgrey;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+
+        .box {
+            position: relative;
+            width: 50%;
+            float: left;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .image {
+            opacity: 1;
+            display: block;
+            width: 50%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .box:hover .image {
+            opacity: 0.3;
+        }
+
+        .box:hover .middle {
+            opacity: 1;
+        }
+
+        .text {
+            background-color: #379EC7;
+            color: white;
+            font-size: 16px;
+            padding: 16px 32px;
+        }
+
+        .imageGrid {
+            line-height: 0;
+        }
+
+        .imageGrid .tile {
+            width: 33.33%;
+            min-height: 20em;
+            line-height: 1.2;
+            display: inline-block;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            position: relative;
+            color: #fff;
+            font-family: 'Poiret One', cursive;
+            text-shadow: 2px 2px 2px #000;
+            cursor: pointer;
+            cursor: hand;
+        }
+
+        .imageGrid .tile:before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            position: absolute;
+        }
+
+        .imageGrid .tile:hover:before {
+            display: none;
+        }
+
+        .imageGrid .tile:hover {
+            opacity: 0.5;
+            z-index: 1000;
+        }
+
+        .imageGrid .tile .textWrapper {
+            text-align: center;
+            vertical-align: middle;
+            width: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: .95em;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .imageGrid .tile .textWrapper .content {
+            display: none;
+        }
+
+        .imageGrid .tile:hover .textWrapper .content {
+            display: block;
+        }
+
+        .imageGrid .tile:hover .textWrapper .content h2 {
+            margin: 0;
+        }
+
+        @media (max-width: 1000px) {
+            .imageGrid .tile {
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .imageGrid .tile {
+                width: 100%;
+            }
+
+            .imageGrid {
+                width: 110%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="icon">
+        <a href="index.html"><img src="logo11.1.png" width="60"></a>
+    </div>
+    <div class="container highlightTextIn">
+        <a href="index.html" alt="HOME">HOME</a>
+        <div class="dropdown">
+            <a class="active" href="portfolio_page_2.html" alt="PORTFOLIO">PORTFOLIO</a>
+            <div class="dropdown-content">
+                <a style="font-size: 16px;" href="portraits_2.html">Portraits</a>
+                <a style="font-size: 16px;" href="city_2.html">City & street photography</a>
+                <a style="font-size: 16px;" href="abstract_2.html">Abstract & Texture</a>
+                <a style="font-size: 16px;" href="nature_2.html">Nature & Wildlife</a>
+                <a style="font-size: 16px;" href="macro_2.html">Macro</a>
+                <a style="font-size: 16px;" href="fashion_2.html">Fashion</a>
+                <a style="font-size: 16px;" href="architecture_2.html">Architecture & Real estate</a>
+                <a style="font-size: 16px;" href="astrophotography_2.html">Astrophotography</a>
+                <a style="font-size: 16px;" href="food_2.html">Food</a>
+                <a style="font-size: 16px;" href="monochrome_2.html">Monochrome</a>
+                <a style="font-size: 16px;" href="minimalist_2.html">Minimalist Photography</a>
+            </div>
+        </div>
+        <a href="projects_page_2.html" alt="TRIPS">TRIPS</a>
+        <a href="about_page_2.html" alt="ABOUT">ABOUT</a>
+        <a href="contact_page_2.html" alt="CONTACT">CONTACT</a>
+    </div>
+
+    <header class="main_h">
+        <div class="row">
+            <a class="logo" href="#"><img src="logo11.1.PNG" width="42px"></a>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a style="color: black" href="portfolio_page_2.html">Portfolio</a></li>
+                    <li><a href="projects_page_2.html">Trips</a></li>
+                    <li><a href="about_page_2.html">About</a></li>
+                    <li><a href="contact_page_2.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="imageGrid">
+        <a href="https://photos.app.goo.gl/Lr8Su3RtM1x6xSAt5" Target=”_blank” class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/_mFwHHhW7dcWq41k4u4LbNieb1rnBUZwUDVrb3piyGYH4ZSD9dGOKmrM61kxLqfQnS8ph0dRKlH1tABZ90Srx-dlU8Uv3x0f3y2_Y1n_7ZukktnXHM8sEv9-gEK8_UM5y68laxoY-Bi6ik3VQSZr6E5hTNsejbiDV14kBTr7gvwPuSnPueiZuhbe3e0VLJ37lB_bkLwrTdcJFfzEsoSWuR6_qCMIUQ2VBHYxRyCMoRmOavbmq7Y9w_CnpHQWut1k0MJcop45ACmhHXIJls3F85FFIs_FEeVyfHkFmdrw7KxyTOJm3cypeJmdTVC6pkeVkUt2rcwafrHI_fEKuEGwdDpTFReOK3-F5-AGJGid_09udHuqEKp1Pgl3HlCWmkmV8dV0vi_bfeu5h0ad74rbh42L0HHTKaI9v2L2PYVIRqu6QZAcDn5Mg87w2kXq3-Abwg1LqzIJRxyc-mLFGYOjoie2uYuxUNnWtMVq_HRHT9eytE1psfRK9XV68ZX_TBVAtwBhj5xDSb51852qMPgquvxIsh8fS0ClFhvNEg0avUpRyxlgLTHhlBKIB3m5S5IBNu-Gq1_mPHzREJOFtEfuR3XztxnDL0cjxnGcft73dAUKp1rGkUSyk39U_UEZXKcmEkICVcsy0WVFyb_dt_5GoOFYuo5tu545MDD5oeY7S_ZHVIzZtuDPiVe_ONXF1uYtoy3sYbXeSB6URIJvcbypQ8A5Sg=w1376-h867-no');">
+            <div class="textWrapper">
+                <h2>Show All</h2>
+                <div class="content"></div>
+            </div>
+        </a>
+        <!--
+--><a href="portraits_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/QTfTHQwfXxxsSMlhrgKq4RAhlBN3kSpFl0KGw0RGsjLsYTAduv3oe3zDyN0tahsXJhBvTjEnaXXAzXgEsEBbBR-z_PBt9rka5YsYTspzQ6v2-3ZZ3IV9SyMh2uQTnpu0SBoIBKyRI_IyTSbUbti5aqskcgtG-O1U4k5_d_B1xBXmwvxXlt460_VfxohF1sMu2lpu7RGhqrwUnIITrKj2QPhQSJ8qphkYKWfX9J1qO6XR9myMnOXSKsigV3GZxNCqe48JzOesvlN3arpJbXKsliJPiPtA0Lv-qMqs6EOGx-90jau4k5vFrtPe4jV4z1lEjCD8gD4HS9jyV-wrj8QfY2joOi-iv51AqbDzv84wcf1E9V2rtrynzM1WTry9POsYFsof_dpbirA66BLb10v9ngsZTvIYjIMq95iUjjc3xiAePJLjfbM-iiTsbfg8OvqzlKE_jt9JLzfb4ZgESzbccd46cpnrdsx5pb3sVH8P-UDIkr4I71lxLwjeE8LZJCgLXu3kZBb3pykiR2l9pADE1q8H4PMNHfV0GJrH3MhlysfJABg9nIixysA7IexCds7sTNiWuu-vJHM8OIJc43Za30jOOupmaos3ZF5r35uZJCmvWySX_QypB3tny2MYs81QBDrNFZL7MR7JauRmTw3NvL74QD_NKovYQCRSXx8gjW0FGckqxuJJbWNBYYqobC0ouqYJG6RxV43nOjQpwCvHOlPooQ=w1301-h867-no'); margin-left: -4px;">
+            <div class="textWrapper">
+                <h2>Portraits</h2>
+                <div class="content">A portrait photograph in which the face and its expression is predominant. The
+                    intent is to display the likeness, personality, and even the mood of the person.</div>
+            </div>
+        </a>
+        <!--
+--><a href="city_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/HkHAQ-8xVAVejNgZ8tzhkAhtaEKaaBeF9m-ydas-KT7iXoAXMqcIWHXIO-d6cxY-29WHCkjz-DO3X12FVqoOUj_i-HT8j7HJIcjB7dAEe3_sg5n-9frXsiEVWfg1KJDuTW0oTJ96b2DCaPGUUlgFJLIXitH05FyUjjJiAtY72r-519-qQsB5v6VLPy-Py311BaN7VED2_JjUtQE6ochfaFBaHYpn0ELoprvfm9Mb1k6zts0UK0CVKwtI9Egm0eC3VgZ89hWg0mGyHav9r6a0Ofj_ia9x8Rddi0LmdP8Ve_CmrHP4m0FefaZ3Gp7hq346k4OXoU37lUuvZqUqwwBXDjb1pRoEzmkCW0ErDutcHzPzUGWvx4mxUeWunfv1noWpAOWUoYKkCQ4k_w_u3gmb7dIKZ2Jcq0P_djKldwbNWNLkek23B0vJDjCHSIXAhdPWzv6p8-fht24zhAzTdTBLBOahdDW6PWg93Kbr28jOAuW2c3sMf0O4PxtrjFDCskF3Kv36cI87heDhTm0kFgVFzx7L57rBNQVp8GmehsJVqkx9EYHZHTPOj9e5KMhYKkQlhSKosE8fI35fFrpBCrCdufFHAd9K-Zcr3-JE-HY5UzxjZLfQT9Xdpy8A57pFbMmsyhQs35H4G308jWNB3CN4mVsdUnGCDKfYUp15oedarT2j_WxrxzpSwsrtReFFVJAszcJLgpx9tHtLN4tmdKVwinDRPQ=w1313-h867-no'); margin-left: -4px;">
+            <div class="textWrapper">
+                <h2>Cityscape & Street photography</h2>
+                <div class="content">Street photography is conducted for art or enquiry that features unmediated chance
+                    encounters and random incidents within public places.</div>
+            </div>
+        </a>
+        <!--
+--><a href="abstract_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/KNWhaZxHp8s6wwm-Y8VZJAmsVhmy_sogZw3ZfkUK8S_qUZqbD-g1JusLmbmFZoQkdwQ7BaH9-marMRhmnlbOIKoSkkUYIOIc_VgukTQnqwHGAUPDoynSVREnlrXYW40pescX-R31uHIcKIwxUkDGbe96dnAAd4yFKVAKDvfqxPNZo77nh_H3at5lTsK0XO9vcSQ6qEDvOnqmLItFtnCiULqieAskb9dGjlKqva_nK0Lvsg-_qtaPgd720AL4gjxyFqu2FLHqNipDqd-nkka8mM2RDmwHk4R3pwQkKTBduG00Q5_9PevYnuvEci7nZ7rHrZHR_iQIIGPAAkxYb8zVCAm-Vjay6yvQnsOvM3ST6vejtM99WYGzgbaHePUXtT9wcOjvqIQtK8hAY_CTZZTTMe6O7w4X0YXk82pMdgQc6htudo-V-DUmhlZTwOloWboYr9vACMQs7z4Sh1e1_q9MnR9U38NkGnPY38H9fSx57bE-2FtpgASeLOX47Q-BMVoVjJYRgDdmEHLXoEh-fcPVuo4Q0u_fHO_zLiProQFheVybqHBpxqhKQYZbx9q5emwoa_enJTzryZ9U4NsYfUU7Ek5VGdY6ja6fVIdWx6d89jp_NgiBIXFMNKl4j0mgwoTPB1f1zcA9CDXyRPqi1X4YNUSx5VOTtOnbl4AAPPkpqxSnvtOKWmtOiW-xGCwkVbxVA5EOdInTPk9Ugj7LsYgDSmnLuQ=w1301-h867-no'); ">
+            <div class="textWrapper">
+                <h2>Abstract & Texture</h2>
+                <div class="content">Abstract photography is a means of depicting a visual image that does not have an
+                    immediate association with the object world. it may involve the use of color, light, shadow,
+                    texture, shape and/or form to convey a feeling, sensation or impression.</div>
+            </div>
+        </a>
+        <!--
+--><a href="nature_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/MjC65Xyr99VM-Jq5ozzk0htxHD4PvhgvHmyivtcIbr0MrIL20Ol0O6Zqt4lMi5vbt3blHf8k9r3kIorJmhWLs7-JeXpnxx9M1_PGlOKVucYqoKizU_xRVuNKfy9tBz8eWbc_TImSf0GOA4DFeezneKWS2T_xyBhHAvAkz1xntE--4txlC6HSN9UcTh5myR0z5p-RNasNChkbft1EaL0WeqGPDTmAfinwXG-BVJ9skp_sugzZ-aFzpyZXxqfxJtl2nJcwONrAeq34_8zozc9O-V2ZCYk2oBConZbs_Vad0RPhL2RLO7DzNF_iNGvv-4d8kc7e1SvDhbdeydF5hLQOEUbDkEP-7kJXlvxJGyXDus7PNX2LPyYaCbRKFP7D8aQmpEYR0lm4V5WJnq35m0Ge-AgLYqsiqx8J6I-8_QimRIMI1kAZ6fTbTVHQfm6Sj8nBMTxnL-iOfJMOaEcvtd75NtPUiWG6jUFD002j0mGdqjqlJB3aFPY04s2tOwFiPExBg4cdqUy8sWRxjaVI1QVuXH1znLuIAyiZ45jd5VwLKbfQpYPaqxP6bKVDkTLuGR0OZRKuVEGQVBWoIZr6QqUAfE-a4SRiSVLMzUtkrkY9XXPSwE1AKhjaUM6Yb-z3mIeZi99RsCeImgjN0uk3VKjZsWB8UgJ2tYit9LKR8ms3BQHuvnR0spfGdtht032NM7hNlUl3ZjdSZCeknub8dxtZS6-NSA=w1301-h867-no'); margin-left: -4px;">
+            <div class="textWrapper">
+                <h2>Landscape & Wildlife</h2>
+                <div class="content">Landscape photography is taken outdoors and devoted to displaying natural elements
+                    such as landscapes, wildlife, plants, and close-ups of natural scenes and textures.</div>
+            </div>
+        </a>
+        <!--
+--><a href="macro_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/acWcV14hdnYC5N-lRWdlND-sfehEnqgmVn3x8t2osXCzMfrxx1H9YctYABxzf9eg_pIsnkwJXKscpSpMHm7BEf_wSzERwZjKyIw5e8gVpUHIpdu49R_g_6FM1LHkoxQz9q4uU72Tbh7z-TXBV6KSQkVusBdoL3-vESVAmN7vP3BNM21TqRGebUCZNwprLul54OTVvIqDmMQHmd-pXcYUmRljrLfX0uLDMWmVMs6_B6g_XUjHAo8iSBOAPXLUCsmoazWwNF_1-ZGhbEYiwSPhsCi7Jhz5jbO9EYvtG_XKElNTbF25g7vZhaMOEeAdHR8-GxJW3SkbhDxQ9fYIzGN_VZXyO92fUu2Kw42_2Nc9mzBWMYzWTfOg5IrAxx-LyffqQCGcQ7Vltl_oBOh4fxMcojghYgTKScp5M0YjCUOdHfIyECI97aWKnThXjTzbpiKBZwCd30VIHQVbawaJoptMYmfHcnvKd5iKss4OU4tnovIGHZNkrchC5JtbnwWalbWHjI5WU7RpsPhh9XOY5Mjwn2Xw5T07yzeqLKFAs8kDvKAP1M0wvj-O55TJIXld-RTsBIisUbAQw8JMmVsvGmk_yWhkSxKoOvih-abK2akqgsJS6CA1C2vmJOflBSuNWAyFcuQm7imqQeMZ4Q3FoBaMSoeWNeufA7pSpQz7QYDxLk3VJoAw5RSFTqB0NWzYLPRkc8jWG_8Hm5-iJfq8XGLz07TbzQ=w1302-h867-no'); margin-left: -4px;">
+            <div class="textWrapper">
+                <h2>Macro</h2>
+                <div class="content">Macro photography is extreme close-up photography, usually of very small subjects
+                    and living organisms in which the size of the subject in the photograph is greater than life size
+                </div>
+            </div>
+        </a>
+        <a href="fashion_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/c3gduuiDW1FRJ8X_9LDM_F9jKZ6GQk3H4Lh3uRBsnn9whTN1Q_WpyOkLjuSj4mO5qOvhOqQNZ2CfenDOaaLzbRR3ktDQSSU5CN8-MC3aOvDaLxgfngSk2oAlw0KLzzEn-ITbkOUNRfQd1CwIO6KMlpxsAajMAkNl7TQcP50xTwVUQHD3LsQGkmuLcvnRTDWWtrzfaPwDFh-P1WgTQyi8tE9akjjf6fNJWRA0Joci-zA7kpF8S2A7mSq4ALxV6igQaZYjnx9cUu-ohnhGfERH-AzeZHzFh3FZfIKAHjxOskKrb6ReL8Pl8C6v6BfoER0d0rqBVpimMcLH3bc00nBsZFCW47QGX-ss0H3_Y9p98vq2lkaYnkeF9FCJ-ad-00ZU3e8nfzDEiCrxnTdnY2I8TQpzlnjgAE9Qrt8VExJKKspjdtooWg3xNwkzKfhfyijqLnGHekbg70jicU07pxZWN0Am0YH4Sw6RpNw76YkQ0FAVjTGcg3a5BUx11atghguBk3tUjAVcJ6cO9a7DQMCyicg9pgCd85orrzYCBn1zEsINSTo7z6p7FS_d1dmdJLqaYxM21JC9oAF6Hvf3qrixqSEpmlp4vOkLaA_UAkGUSMBRsLVtE-KAvBPwXXviZSHKgZlvNsETxqvmTgM7EvzVnDu9bm8rAiA9GJoHoCCmUIeaF5NOPMzDi1aIXTV4LjD91LIKZdnMtqOuLkEL-rYfoG9QAQ=w1302-h867-no');">
+            <div class="textWrapper">
+                <h2>Fashion</h2>
+                <div class="content">Fashion photography is a genre of photography which is devoted to displaying
+                    clothing and other fashion items.</div>
+            </div>
+        </a>
+        <a href="architecture_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/zlUvMMQP8HV2ZfkKnIo3P3evDCxhH5MtraAs9Bhy6c37t34nLpzlyQkikCjYvqzNx_IDHsosaqTfjH1vtr8xk62pFwcZGWTI2MahnvPV1evMjyGRtowMugr6cWXlBQwZtU1PpYmIpE31MVBV2P7EA9F1kEVfw7q50UzdaswZKmWAyuzRDxpXD9M8P0FF9z64xaJyE-Q-nMK_YLeLuklL5gUZPCqe1F-CPJ99BQBgPKoFQhEp2RbTQgg-zcAEgcPaC7dultD5SfwOaK9-REcRJ0TScLgHfnQZnF4jS-PazdkHh-OkFkDybP4ufhoSgeEVD5-gnoaBEyiiG7Lwv-boSYssfG1uFhWb2aOEa9OC7jbNyaXsPzB2R8ajhzKuEzhOZ2uDBC2u34cbFPdoakj2Lq10Ac5nt-jrkbkNQGqRwY9zQv76VmThT9kGyUBX5v5LtdUeBHgVNGcd156ijgMk70lEDbnkDv3aDUeuMpXGMsgalV-VVxoHpxuLKLOEQEZ7LsLtg5zHt51tRLLLtqyRTeXnkI-FX0CZdxP_1y4PM3U6Mc78I8pWtr9pNGagNYbWKHUoRkcBpBStMxfl4JA04G3_t1tc-A6WLrc78c4Jgvz-VVdtnVTPIxrOJ3vpC2t--wTLKioQ5uGCm-QqMOXYqZwI_VWL7dLywTvqaOi2mHcazlyYWV0kf1Ubfc_ft0m0J9Q7e78rU_rt3j2xjfoVpFddYw=w1302-h867-no'); margin-left: -4px;">
+            <div class="textWrapper">
+                <h2>Architecture & Real estate</h2>
+                <div class="content">Architectural photography is the photographing of buildings and similar structures
+                    that are both aesthetically pleasing and accurate representations of their subjects.</div>
+            </div>
+        </a>
+        <a href="astrophotography_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/8GykinxY22dM5XKw5EUDqUi825bJhY-rvJ4-v_iL6OlKtWPeFmKcigkri4ehVm2OBwHIsfQsmXQOl-Cr-R1n76UNoaglh7JsCW-1CzioEl_WESdZ73lSPl0Ma_xD0cQ3ZgRHmSVxdqNborYsGItNcxLoRfqTeP8bBwGRTp4VHl65kAA8w9AsRSHCPtSMLDR7Pak4t0XvH8pTBIPb4IXLKEdyf8TUn5JqfkOKqfTA7hRhdNW9aDYl-yj6qB7AFP8sslgLLlsRWbxKFD1NlZMT4Lkv6-hQ0e8gMeLRMOu2fJNc9VzAPkcKiWFpyL_TqzP6Rs7xQQbyLSYVU8YpoDif9PJoJFG_512LmYyGbEntMZdxOkyMzeNVv8gmp-ypg4re9Y0oUhaX_93EQgR_1EzUhbBHumm7ZkvuaN9HKJ5y8hc33LMkJP4IzgWQ1jZtFIIct2KAK13n92nFGsqe6v-ZmF2yPW_48uE1MptFkvFUJNJfT7O0zngv13ZXm-DfH0j0HHwZDXOukV_hB3Y7zGnyMyFuffCk7_Hq6QWFTQtdBC5sKmixQ5_LSd8JXS5Epa-S71nBZnkx0zCwjZ7BjFkgxZgQgCvgzwxobUBXKR8wICRM7o6uK82YOQCRbv_UiN1vvGxxrNceECQengA-lCILz3g_gTupzbV2_2CuAj1uQKprOrNEOYVpHoCCloHD9Zhjh1g3vtUv4Lzm1p-MyJRai1HCOA=w1301-h867-no'); margin-left: -4px;">
+            <div class="textWrapper">
+                <h2>Astrophotography</h2>
+                <div class="content">Astrophotography is a specialized type of photography for recording photos of
+                    astronomical objects, celestial events, and areas of the night sky.</div>
+            </div>
+        </a>
+        <a href="food_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/GBB9_fhqCBF-gSndQoq5vi-csjwwHvMwTwMknnMv0IRvBA9gA5An_YDVKZrwwmLhmev3Ae12Ov0MwaWFw1pwxlsaC74YHzJbyhYVJtqMxp7wxDlL6evwbay4qAauTpYTIWuXx-47LfT7BS_7Kcx5UAMRcpE4nENby1ik-fpsIh3tDHamKc48s12Oo5NZbOYL93JkPQewu5clu1VFVaEeOsiK432lvXAjGvFi2n7thdzX360IY_aNEFNzmdNbgICyK5i3PbVTzdZcpQ68Xw72NjDsPLrHyzD0MTs9RYfn486FaE7ptc_W3k1j86nLzplwCYJH3DfbdesyNh3eGnHC_hpALqDqhGOsj65AWX_1MgDyioNPBf6OQRePx_1C9VFBzW5-0vtvEH4OMxLsG8np3B1jUyh6tIUzGzxTDUfX5446_MdZ0dvBtzDHeALft0ZN0vQGN6_TtsWaVjBR623CkWFbJ4fvKkLAgTMaoAIeI1q01vyHbWIspia18YtsgbMJ11_FfBSmnTsZUV-JU22-JAnQaMh3OnBQAheRTZRfYJRtmwBZY9fw45k0fXp6wKc5b-7v4CyotRCLwzqAVqbh8N61q0nNtkzvPsSryaWVBdcOwp-67UPHS0wCvVy3voJ9qck8llLbQL8SskdJjekOJ5kruC2bKKesCLC0RpYGnBc2D7UVJ72z3cNlPyvAadKHCMyjSkUYk83TtvC3AqraIbe1GQ=w671-h867-no');">
+            <div class="textWrapper">
+                <h2>Food</h2>
+                <div class="content">Food photography is a still life photography genre used to create attractive still
+                    life photographs of food.</div>
+            </div>
+        </a>
+        <a href="monochrome_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/UmTmW4_nyVEjbPeIU2QzgzkKZuFdiJh0o78rAfnQ17-FTD2C7c2usOTwGN1sJBGreTcDkNhvUiE4hhjFPh1dGe2N8QMfLCVVXmjSLn4wOyWnkfrvc2UhvR0ma5A8S3iw4dwxXkfCXawua6h0tK7HPwcmt0_3anFCbpwQfIFkfsuC5uFXT7Eg9GZbeB5HlCKlSbtAYcamGyexvPsmrK0nFXAaPI4LZIT5FpXWn9Qx7p1P6hv9k8mHh6mN-TvWiFAAl9-xMWtlLnDVSkfIQzOHeS7g6mRlk99tBa9EZAtbmhBC7sixSKLSvPx_rT3aB8bXWAX1F_8tRVh9SJuKgSuAExwMx2vVdghB4somQ0-9XIPW58tfVXUD6TiiABAYyQFFJ46CAHQ8YCuvjNgfqrgw1Wk5zFYHE7mUb1Ofcl1sOjf5ZPjeys-xh7DGW6dXcPDSqN9MCKKQMnwQsXrOLPx5sS6znDaaX8I_wys41TfjSE3Y8NcU9dmP1fbuoPs_IY_7ExUqv0bSvU1QrIsaPSisTdv4GvAxqua05BeNiPuep_gShNrpXxCcqWErs7-TH2iuTrA6ql0pMW4eKg1MHNlMaPRedd7EwtxVQOL-TqXxqVHxVqzPLswGr6sOG5Yz0jdXTtY1zFVI57ZTV9OK95xT_BuoPaCumLlBX8qPUyUJhUuENXTzmO7JNCzK2_6ea8FqniQb_ew1odHF5QSQ7KOYuJAraw=w1302-h867-no'); margin-left: -4px;">
+            <div class="textWrapper">
+                <h2>Monochrome</h2>
+                <div class="content">Monochrome photography is photography where each position on an image can record
+                    and show a different amount of light, but not a different hue. It includes all forms of
+                    black-and-white photography, which produce images containing tones of neutral grey ranging from
+                    black to white.</div>
+            </div>
+        </a>
+        <a href="minimalist_2.html" class="tile"
+            style="background-image: url('https://lh3.googleusercontent.com/6-xtLvZiJd638o_kT_Ee3P83AH5AXgtoY2tJoKvX-BHd83ZwctY-4k1oHM0vMW9zzSQVl94RSkveVL5APnKcmXvoSQOuZxRBMOVP9aXTDpr8ktTQDeqaAv673HAmF952sWESX_g1hNo0rZGXvoSXeXULPIc0TulNwt96dirB7Y0WDCnVYLxUndPmIdRIdvfWel6t6XRDucrRitcOPfAFMuSHTYw3cIYkNdLclCJA90Wz3AgYmBjKcr9RY8jX3TVK7KR-z2IwdhMKXnXkJVrNGaWXlfmJYuKfFQ1G8dq2r--QnF0d8ymYuadQFAmHGTVDG8_nN0klzXU6FGvmZxrASur7JTcvHs3gR1UiYlJWff_7CVrdKMRMVa3qN55239dcrfudy4VsGS9MFrfdz_ba0WE8zg5WrUJF0Urdb5u9IeF70u1KIm9VfvBJkxQpPl2qqCNHXT5hbIFqUrn0NGALlVGf_7un9UlMN6l6iDj6ymVBun9NcV5bgTg2mxDgG4hZwj-NvPgER-qiobFCT2Dg_bszMfLi_DgKBFVbzqW9CYUFHxP5AEYtS6scY56GM0flIMzF4RvtYGtPwLVPZX-28VgpZZ10HKP1IR_5HI7KM3uC-v8Euwxpo3k57viusnqt54XfRedzGBpxKmAyuqxk6jlyaDqZ1DrlPwOW3IbownmUW8YaOXrwgALFTPPwFT9asKdnvPhQC11KICte8qgGXT5jsg=w1302-h867-no'); margin-left: -4px;">
+            <div class="textWrapper">
+                <h2>Minimalist Photography</h2>
+                <div class="content">Minimalist photography refers to capturing a scene using the least amount of visual
+                    elements. These components can include, yet not exclusive to colour, texture, lines and forms.</div>
+            </div>
+        </a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div style="text-align: center;"><a class="BackToTop" style="text-decoration: none; font-weight: 100;"
+            href="#top">Back to top</a>
+        <br>
+        <a href="#"><img style="padding: 5px; vertical-align: -5px;" src="logo11.1.png" width="40"></a>
+    </div>
+    <br>
+
+    <footer class="footer">
+        <br>
+        <br>
+        <h2 style="font-family: 'Amatic SC', cursive;">Find Me On:</h2>
+        <a href="https://www.shutterstock.com/g/eliran.bus?language=en" target="_blank"><img src="Shutterstock-logo.png"
+                height="35" width="35"></a>
+        <a href="https://www.facebook.com/eliran.buskila.524" target="_blank"><img src="facebook-logo.png"
+                alt="Facebook logo" height="35" width="35"></a>
+        <a href="https://www.flickr.com/photos/147173434@N07/" target="_blank"><img src="flickr-logo.png"
+                alt="Flickr logo" height="35" width="35"></a>
+        <a href="https://photos.app.goo.gl/Lr8Su3RtM1x6xSAt5" target="_blank"><img src="google_photos.jpg"
+                alt="Google photos logo" height="35" width="35"></a>
+        <p style="position: center; font-size: 10px" ;>Designed & developed by
+            <br><span class="signature">Eliran Buskila - Web Developer &copy;</span></p>
+    </footer>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
